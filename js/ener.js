@@ -26,7 +26,7 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
             console.log(+(endAngle - startAngle > 180));
         return paper.path(["M", cx, cy, "L",x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
     }
-    var angle = 0,
+    var angle = 0-180,
         total = 0,
         start = 0,
         //TEXT removed becuase I don't want to tackle it yet
@@ -38,7 +38,14 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
                 ms = 500,
                 delta = 30,
                 bcolor = Raphael.hsb(start, 1, 1),
-                p = sector(cx, cy, r, angle, angle + angleplus, {fill: "90-" + bcolor + "-" + color, stroke: stroke, "stroke-width": 3});//,
+                p = sector(cx, cy, r, angle+(Math.floor((angle - angleplus)/-360)*180), (angle - angleplus)+(Math.floor((angle - angleplus)/-360)*180) , {fill: "90-" + bcolor + "-" + color, stroke: stroke, "stroke-width": 3});//,
+                console.info("angleplus");
+                console.log(angleplus);
+                console.log(angle);
+                console.log(angle - angleplus);
+				console.log(Math.abs(angle - angleplus)>360 ? Math.floor((angle - angleplus)/-360)*360:(angle - angleplus));
+                console.log(Math.floor((angle - angleplus)/-360));
+
                 //txt = paper.text(cx + (r + delta + 55) * Math.cos(-popangle * rad), cy + (r + delta + 25) * Math.sin(-popangle * rad), labels[j]).attr({fill: bcolor, stroke: "none", opacity: 0, "font-size": 20});
             p.mouseover(function () {
                 p.stop().animate({transform: "s1.1 1.1 " + cx + " " + cy}, ms, "elastic");
@@ -47,7 +54,8 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
                 p.stop().animate({transform: ""}, ms, "elastic");
                 //txt.stop().animate({opacity: 0}, ms);
             });
-            angle += angleplus;
+            angle -= angleplus;// +(Math.floor((angle - angleplus)/-360)*180);
+            console.log(angle);
             chart.push(p);
             //chart.push(txt);
             start += .1;
@@ -56,7 +64,7 @@ Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
         total += values[i];
     }
     for (i = 0; i < ii; i++) {
-    	if(i>0){//let's strt fixing based on the first segment
+    	if(i>3){//let's strt fixing based on the first segment
     		console.info(i);
     		continue;
     	}
