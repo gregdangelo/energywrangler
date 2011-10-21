@@ -5,7 +5,7 @@ Function.prototype.method = function (name, func){
 		this.prototype[name] = func;
 	}
 };
-/*Raphael extras*/
+/*Raphael extras... ugh this things still looks like poopish*/
 Raphael.fn.pieChart = function (cx, cy, r, values, labels, stroke) {
     var paper = this,
         rad = Math.PI / 180,
@@ -182,11 +182,49 @@ if (window.navigator.geolocation) {
 /*
 	what do I actually need here?  Lets build out our Models and Views first and then we'll have a better understanding
 */
-if(onVals){
+if(onVals){//ok we have our ontario values now what?
 	//just output the values
 	console.log(onVals);
 	//ok determine what time it is
-	var currentDateTime = new Date();
 	//hour(0-23) - month(0-11) - day(1-31) - weekday(0-6)
-	console.log(currentDateTime.getHours() + " - " + currentDateTime.getMonth() + " - " + currentDateTime.getDate() + " - " + currentDateTime.getDay());
+	var currentDateTime = (function(){
+		var d = new Date();
+		return {
+			'hour':d.getHours()
+			,'month':d.getMonth()
+			,'day':d.getDate()
+			,'weekday':d.getDay()
+		}
+	})();
+	console.log(currentDateTime);
+	//now that we know the time determine what season we are in... or maybe check if we are on a holiday
+	//ask server... is today a holiday?
+	$holiday = false;
+	//ask server... is today a weekend?
+	$weekend = false;
+	//ask server... then what season are we in winter or summer?
+	$season = 'winter';// || 'summer'
+	var flags = {
+		'SEASN':0x8 //Season Rates (1 for Summer, 0 for Winter)
+		,'HLDY':0x4 //Holiday Rates
+		,'WKND':0x2 //Weekend rates
+		,'BLEND':0x1 //blended rate means we ignore everything else
+	};
+	/*
+	bits
+		1)flat/blended rate
+		2)weekend
+		3)holiday
+		4)season
+		0111
+		0110
+		0100
+		0101
+		0001
+		0011
+		0000
+		0010
+		
+	*/
+	
 }
