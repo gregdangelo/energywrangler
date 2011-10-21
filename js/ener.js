@@ -151,7 +151,7 @@ var TimeOfUse = function(options){
 	return that;
 };
 var tou = new TimeOfUse();
-tou.init();
+//tou.init();
 
 /*GEO*/
 /*We will want to check the user's location to see if we have data available to them*/
@@ -182,3 +182,11 @@ if (window.navigator.geolocation) {
 /*
 	what do I actually need here?  Lets build out our Models and Views first and then we'll have a better understanding
 */
+if(onVals){
+	//just output the values
+	console.log(onVals);
+	//ok determine what time it is
+	var currentDateTime = new Date();
+	//hour(0-23) - month(0-11) - day(1-31) - weekday(0-6)
+	console.log(currentDateTime.getHours() + " - " + currentDateTime.getMonth() + " - " + currentDateTime.getDate() + " - " + currentDateTime.getDay());
+}

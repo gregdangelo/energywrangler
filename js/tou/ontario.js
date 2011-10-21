@@ -1,0 +1,29 @@
+var onVals = {
+	'summer':{
+		'peak':0
+		,'mid':0
+		,'off':_.union(_.range(7),_.range(23,(7+12),-1))
+	}
+	,'winter':{
+		'peak':0
+		,'mid':0
+		,'off':_.union(_.range(7),_.range(23,(7+12),-1))
+	}
+	,'holiday':{
+		'peak':0
+		,'mid':0
+		,'off':_.range(23)
+	}
+	,'weekend':{
+		'peak':0
+		,'mid':0
+		,'off':_.range(23)
+	}
+	,'price':{
+		'peak':10.8
+		,'mid':9.2
+		,'off':6.2
+		,'unit':'kWh'
+	}
+	
+}
