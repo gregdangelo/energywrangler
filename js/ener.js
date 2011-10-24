@@ -212,10 +212,10 @@ if(onVals){//ok we have our ontario values now what?
 	};
 	/*
 	bits
-		1)flat/blended rate
-		2)weekend
-		3)holiday
-		4)season
+		1)flat/blended rate 0001
+		2)weekend 0010
+		3)holiday 0100
+		4)season 1000 (summer)
 		0111
 		0110
 		0100
@@ -224,7 +224,5 @@ if(onVals){//ok we have our ontario values now what?
 		0011
 		0000
 		0010
-		
 	*/
-	
 }
